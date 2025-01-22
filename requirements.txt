@@ -1,0 +1,7 @@
+tensorflow
+numpy
+opencv-python
+scikit-learn
+qiskit
+qiskit-machine-learning
+tqdm

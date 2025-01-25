@@ -5,8 +5,8 @@ from model import create_model
 from train import train_model
 
 # PATHS (REPLACE WITH YOUR ACTUAL PATHS)
-train_csv = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\2. Groundtruths\IDRiD_Disease Grading_Training Labels (2).csv"
-test_csv = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\2. Groundtruths\IDRiD_Disease Grading_Testing Labels (2).csv"
+train_csv = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\2. Groundtruths\a. IDRiD_Disease Grading_Training Labels (2).csv"
+test_csv = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\2. Groundtruths\b. IDRiD_Disease Grading_Testing Labels (2).csv"
 train_img_dir = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\1. Original Images\a. Training Set"
 test_img_dir = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease Grading\1. Original Images\b. Testing Set"
 

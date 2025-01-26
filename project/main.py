@@ -12,7 +12,7 @@ test_img_dir = r"C:\Users\chana\Desktop\datasets\B. Disease Grading\B. Disease G
 
 # LOAD AND SPLIT TRAINING DATA
 train_df = pd.read_csv(train_csv)
-train_df, val_df = train_test_split(train_df, test_size=0.2, stratify=train_df['Risk of macular edema'])
+train_df, val_df = train_test_split(train_df, test_size=0.2, stratify=train_df['dme'])
 
 # CREATE DATASETS
 train_ds = load_dataset(train_csv, train_img_dir, augment=False)  # UNCOMMENT `augment=True` LATER
@@ -20,7 +20,7 @@ val_ds = load_dataset(train_csv, train_img_dir)  # Use same CSV but different sp
 test_ds = load_dataset(test_csv, test_img_dir)
 
 # COMPUTE CLASS WEIGHTS (UNCOMMENT TO ADDRESS IMBALANCE)
-# class_counts = train_df['Risk of macular edema'].value_counts()
+# class_counts = train_df['dme'].value_counts()
 # class_weights = {cls: len(train_df)/(3 * count) for cls, count in class_counts.items()}
 class_weights = None
 

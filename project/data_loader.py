@@ -2,19 +2,16 @@ import pandas as pd
 import tensorflow as tf
 import os
 
-def load_dataset(csv_path, img_dir, img_size=(224, 224), augment=False):
-    # Load CSV and clean filenames
-    df = pd.read_csv(csv_path)
-    df['Image name'] = df['Image name'].str.strip() + '.jpg'  # Ensure .jpg extension
-    
-    # Construct proper Windows paths
+def load_dataset(df, img_dir, img_size=(224, 224), augment=False):
+    # Clean filenames and build paths
+    df['Image name'] = df['Image name'].str.strip() + '.jpg'
     image_paths = [os.path.join(img_dir, fname) for fname in df['Image name']]
     
-    # Verify first 5 paths exist
-    for path in image_paths[:5]:
+    # Verify paths
+    for path in image_paths[:3]:
         if not os.path.exists(path):
-            raise FileNotFoundError(f"Image not found: {path}")
-    
+            raise FileNotFoundError(f"Image missing: {path}")
+
     labels = df['dme'].values
 
     def parse_image(image_path, label):
@@ -25,7 +22,8 @@ def load_dataset(csv_path, img_dir, img_size=(224, 224), augment=False):
         
         if augment:
             image = tf.image.random_flip_left_right(image)
-            image = tf.image.random_brightness(image, 0.1)
+            image = tf.image.random_brightness(image, 0.2)
+            image = tf.image.random_contrast(image, 0.8, 1.2)
         return image, label
 
     ds = tf.data.Dataset.from_tensor_slices((image_paths, labels))

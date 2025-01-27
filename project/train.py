@@ -1,16 +1,17 @@
-import tensorflow as tf
 from tensorflow.keras.callbacks import EarlyStopping
 
-def train_model(model, train_ds, val_ds, class_weights=None, epochs=10):
-    # ====== UNCOMMENT FOR EARLY STOPPING ======
-    # callbacks = [EarlyStopping(patience=3, restore_best_weights=True)]
-    callbacks = []
+def train_model(model, train_ds, val_ds, class_weights=None, epochs=30):
+    early_stop = EarlyStopping(
+        monitor='val_loss',
+        patience=7,
+        restore_best_weights=True
+    )
     
     history = model.fit(
         train_ds,
         validation_data=val_ds,
         epochs=epochs,
         class_weight=class_weights,
-        callbacks=callbacks
+        callbacks=[early_stop]
     )
     return history
